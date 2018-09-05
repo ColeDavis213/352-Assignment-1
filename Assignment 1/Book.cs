@@ -37,7 +37,7 @@ namespace Assignment_1
 
         override public void Restock(string item, int amount)
         {
-			Console.WriteLine("How many woould you like to restock? ");
+			Console.WriteLine("How many would you like to restock? ");
 
 			amount = Convert.ToInt32(Console.ReadLine());
 
