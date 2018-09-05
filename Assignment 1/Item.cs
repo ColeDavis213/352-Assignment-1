@@ -36,6 +36,7 @@ namespace Assignment_1
         abstract public void CheckInfo(string item);
 
         public int quantity;
+		public double price;
         private string name;
         private string type;
     }
