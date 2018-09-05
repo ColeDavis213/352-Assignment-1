@@ -18,8 +18,8 @@ namespace Assignment_1
 
 		protected Item(string n, string t)
 		{
-			n = name;
-			t = type;
+			name = n;
+			type = t;
 		}
         
 		protected string GetItemName()
@@ -33,7 +33,7 @@ namespace Assignment_1
 
         abstract public void Sell(string item, int amount);
         abstract public void Restock(string item, int amount);
-        abstract public void CheckInfo(string item);
+        abstract public void CheckInfo();
 
         public int quantity;
 		public double price;

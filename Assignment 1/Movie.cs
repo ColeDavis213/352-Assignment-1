@@ -45,7 +45,7 @@ namespace Assignment_1
 			quantity += amount;
 		}
 
-		override public void CheckInfo(string item)
+		override public void CheckInfo()
 		{
 			Console.WriteLine("Type: {0}\n", GetItemType());
 			Console.WriteLine("Name: {0}\n", GetItemName());
