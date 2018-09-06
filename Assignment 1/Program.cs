@@ -1,4 +1,10 @@
-﻿using System;
+﻿/* Author: Cole Davis
+ * Date: 9/6/18
+ * File: Program.cs
+ * Description: The driver file that includes main and the code for the menu interface.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +14,18 @@ namespace Assignment_1
 {
     class Program
     {
-
-
+		/*
+        * Description:
+        *      This is main driver which initializes a list of various Item objects and then begins a menu
+		*      that the user can interact with by taking in inputed values and returning information about the objects created.
+        *
+        * Inputs:
+        *      string[] args
+		*		Arguments that can be passed into main by command line.
+        *
+        * Return:
+        *      N/A
+        */
 		static void Main(string[] args)
         {
 			Book Book1 = new Book("Welcome to Nightvale", "Mystery", 50, 20);
@@ -26,9 +42,10 @@ namespace Assignment_1
 
 			int userCommand = 0;
 			int index = 0;
+			int amount = 0;
 			int itemType = -1;
+			int userQuantity = 0;
 			string invName, itemName, userName, userGenre, userRating, userConsole;
-			int userQuantity;
 			double userPrice;
 
 			while (userCommand != 5)
@@ -40,9 +57,19 @@ namespace Assignment_1
 								  "3. Sell an item\n" +
 								  "4. Check Item Info\n" +
 								  "5. Quit\n");
+				try
+				{
+					userCommand = Convert.ToInt32(Console.ReadLine());
+				}
+				catch(Exception ex)
+				{
+					Console.WriteLine("\nInvalid command!");
+				}
 
-				userCommand = Convert.ToInt32(Console.ReadLine());
-
+				if (userCommand < 1 || userCommand > 5)
+				{
+					Console.WriteLine("\nInvalid command!\n");
+				}
 				if (userCommand == 1)
 				{
 					Console.WriteLine("\nWhat type of item would you like to add?\n" +
@@ -50,26 +77,29 @@ namespace Assignment_1
 									  "2. Movie\n" +
 									  "3. Video Game");
 
-					itemType = Convert.ToInt32(Console.ReadLine());
+					try
+					{
+						itemType = Convert.ToInt32(Console.ReadLine());
+					}
 
 					if (itemType == 1)
 					{
-						Console.WriteLine("\nEnter the book's inventory name: ");
+						Console.WriteLine("\nEnter the book's database ID: ");
 						invName = Console.ReadLine();
-						Console.WriteLine("\nEnter the book's name: ");
+						Console.WriteLine("Enter the book's name: ");
 						userName = Console.ReadLine();
-						Console.WriteLine("\nEnter the book's genre: ");
+						Console.WriteLine("Enter the book's genre: ");
 						userGenre = Console.ReadLine();
-						Console.WriteLine("\nEnter the book's quantity: ");
+						Console.WriteLine("Enter the book's quantity: ");
 						userQuantity = Convert.ToInt32(Console.ReadLine());
-						Console.WriteLine("\nEnter the book's price: ");
+						Console.WriteLine("Enter the book's price: ");
 						userPrice = Convert.ToDouble(Console.ReadLine());
 
 						allItems.Add(new Book(userName, userGenre, userQuantity, userPrice));
 					}
 					if (itemType == 2)
 					{
-						Console.WriteLine("Enter the movie's inventory name: ");
+						Console.WriteLine("\nEnter the movie's database ID: ");
 						invName = Console.ReadLine();
 						Console.WriteLine("Enter the movie's name: ");
 						userName = Console.ReadLine();
@@ -86,7 +116,7 @@ namespace Assignment_1
 					}
 					if (itemType == 3)
 					{
-						Console.WriteLine("Enter the game's inventory name: ");
+						Console.WriteLine("\nEnter the game's database ID: ");
 						invName = Console.ReadLine();
 						Console.WriteLine("Enter the game's name: ");
 						userName = Console.ReadLine();
@@ -111,9 +141,13 @@ namespace Assignment_1
 
 					index = allItems.FindIndex(x => x.GetItemName() == itemName);
 
+					Console.WriteLine("\nHow many would you like to restock? ");
+
+					amount = Convert.ToInt32(Console.ReadLine());
+
 					if (index > 0)
 					{
-						allItems[index].Restock();
+						allItems[index].Restock(amount);
 					}
 					else
 					{
@@ -127,9 +161,13 @@ namespace Assignment_1
 
 					index = allItems.FindIndex(x => x.GetItemName() == itemName);
 
+					Console.WriteLine("\nHow many would you like to sell? ");
+
+					amount = Convert.ToInt32(Console.ReadLine());
+
 					if (index > 0)
 					{
-						allItems[index].Sell();
+						allItems[index].Sell(amount);
 					}
 					else
 					{

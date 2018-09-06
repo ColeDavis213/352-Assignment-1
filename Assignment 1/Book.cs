@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* Author: Cole Davis
+ * Date: 9/6/18
+ * File: Book.cs
+ * Description: A child class of the Item abstract class that defines its functions for a book item.
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,20 +14,38 @@ using System.Threading.Tasks;
 namespace Assignment_1
 {
 	public class Book : Item
-	{ 
-        public Book(string n, string g, int q, double p) : base(n, "Book")
+	{
+		/*
+        * Description:
+        *      This is a parameterized constructor that initializes the name, type, genre, quantity, and price of a book object.
+        *
+        * Inputs:
+        *      string n, string g, int q, double p
+		*		The name, genre, quantity, and price of a book.
+        *
+        * Return:
+        *      N/A
+        */
+		public Book(string n, string g, int q, double p) : base(n, "Book")
 		{
 			genre = g;
 			quantity = q;
 			price = p;
         }
-
-		override public void Sell()
+		/*
+        * Description:
+        *      This is an overridden sell function that decreases the quantity of a book item by the specified amount	
+		*      if the quantity is not less than or equal to 0;
+        *
+        * Inputs:
+        *      int amount
+		*		The amount to sell.
+        *
+        * Return:
+        *      N/A
+        */
+		override public void Sell(int amount)
         {
-			Console.WriteLine("How many would you like to buy? ");
-			
-			int amount = Convert.ToInt32(Console.ReadLine());
-
 			if (quantity - amount >= 0)
 			{
 				quantity -= amount;
@@ -36,19 +61,37 @@ namespace Assignment_1
 				Console.WriteLine("\nNot enough in stock!\n");
 			}
 		}
-
-        override public void Restock()
+		/*
+        * Description:
+        *      This is an overridden restock function that increases the quantity of a book item by the specified amount	
+        *
+        * Inputs:
+        *      int amount
+		*		The amount to sell.
+        *
+        * Return:
+        *      N/A
+        */
+		override public void Restock(int amount)
         {
-			Console.WriteLine("\nHow many would you like to restock? ");
-
-			int amount = Convert.ToInt32(Console.ReadLine());
-
-			quantity += amount;
+			if (amount > 0)
+				quantity += amount;
+			else
+				Console.WriteLine("\nAmount needs to be larger than 0!");
 
 			Console.WriteLine("\nStock changed to: {0}!\n", quantity);
 		}
-
-        override public void CheckInfo()
+		/*
+        * Description:
+        *      This is an overridden printing function that prints out all the info to a book item.
+        *
+        * Inputs:
+        *		N/A
+        *
+        * Return:
+        *      N/A
+        */
+		override public void CheckInfo()
         {
 			Console.WriteLine("\nType: {0}", GetItemType());
 			Console.WriteLine("Name: {0}", GetItemName());
