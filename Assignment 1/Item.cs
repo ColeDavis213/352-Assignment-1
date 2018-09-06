@@ -9,30 +9,27 @@ namespace Assignment_1
 {
     public abstract class Item
     {
-        protected Item()
-        {
-			type = "Defaut";
-			name = "Default";
-			quantity = 0;
-        }
-
 		protected Item(string n, string t)
 		{
 			name = n;
 			type = t;
 		}
         
-		protected string GetItemName()
+		public string GetItemName()
 		{
 			return name;
+		}
+		public void SetItemName(string n)
+		{
+			name = n;
 		}
 		protected string GetItemType()
 		{
 			return type;
 		}
 
-        abstract public void Sell(string item, int amount);
-        abstract public void Restock(string item, int amount);
+        abstract public void Sell();
+        abstract public void Restock();
         abstract public void CheckInfo();
 
         public int quantity;

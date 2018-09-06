@@ -10,48 +10,52 @@ namespace Assignment_1
 	{
 		public Movie(string n, string g, int q, double p, string r) : base(n, "Movie")
 		{
-			g = genre;
-			q = quantity;
-			p = price;
-			r = rating;
+			genre = g;
+			quantity = q;
+			price = p;
+			rating = r;
 		}
 
-		override public void Sell(string item, int amount)
+		override public void Sell()
 		{
-			Console.WriteLine("How many would you like to buy? ");
+			Console.WriteLine("\nHow many would you like to buy? ");
 
-			amount = Convert.ToInt32(Console.ReadLine());
+			int amount = Convert.ToInt32(Console.ReadLine());
 
 			if (quantity - amount >= 0)
 			{
 				quantity -= amount;
+
+				Console.WriteLine("\nStock changed to: {0}!\n", quantity);
 			}
 			else if (quantity == 0)
 			{
-				Console.WriteLine("Out of stock!\n");
+				Console.WriteLine("\nOut of stock!\n");
 			}
 			else
 			{
-				Console.WriteLine("Not enough in stock!\n");
+				Console.WriteLine("\nNot enough in stock!\n");
 			}
 		}
 
-		override public void Restock(string item, int amount)
+		override public void Restock()
 		{
 			Console.WriteLine("How many would you like to restock? ");
 
-			amount = Convert.ToInt32(Console.ReadLine());
+			int amount = Convert.ToInt32(Console.ReadLine());
 
 			quantity += amount;
+
+			Console.WriteLine("\nStock changed to: {0}!\n", quantity);
 		}
 
 		override public void CheckInfo()
 		{
-			Console.WriteLine("Type: {0}\n", GetItemType());
-			Console.WriteLine("Name: {0}\n", GetItemName());
-			Console.WriteLine("Genre: {0}\n", genre);
-			Console.WriteLine("Rating: {0}\n", rating);
-			Console.WriteLine("Price: {0}\n", price);
+			Console.WriteLine("\nType: {0}", GetItemType());
+			Console.WriteLine("Name: {0}", GetItemName());
+			Console.WriteLine("Genre: {0}", genre);
+			Console.WriteLine("Rating: {0}", rating);
+			Console.WriteLine("Price: ${0}", price);
 			Console.WriteLine("Quantity: {0}\n", quantity);
 		}
 
